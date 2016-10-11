@@ -52,9 +52,9 @@ app.get(/\/(\d+)(?:x((\d+)))?(.\w+)?/, function (req, res, next) {
   var MAX_DIMENSION = 5000
     , width = req.params[0]
     , height = req.params[1] || width
-    , colour = req.query.color || req.query.colour || 'ccc'
-    , text = req.query.text || (width + ' x ' + height)
-    , textColour = req.query.textColor || req.query.textColour || '000'
+    , colour = req.query.color || req.query.colour || req.query.c || 'ccc'
+    , text = req.query.text || req.query.t || (width + ' x ' + height)
+    , textColour = req.query.textColor || req.query.textColour || req.query.tc || '000'
     , format = getFormat(req.params[2])
 
   if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
