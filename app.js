@@ -54,7 +54,8 @@ app.get(/\/(\d+)(?:x((\d+)))?(.\w+)?/, function (req, res, next) {
     , height = req.params[1] || width
     , colour = req.query.color || req.query.colour || req.query.c || 'ccc'
     , text = req.query.text || req.query.t || (width + ' x ' + height)
-    , textColour = req.query.textColor || req.query.textColour || req.query.tc || '000'
+    , textColour = req.query.textColor || req.query.textColour || req.query.tc || '666'
+    , fontSize = req.query.fontSize || req.query.fs
     , format = getFormat(req.params[2])
 
   if (width > MAX_DIMENSION || height > MAX_DIMENSION) {
@@ -69,7 +70,7 @@ app.get(/\/(\d+)(?:x((\d+)))?(.\w+)?/, function (req, res, next) {
     // Background colour
     .fill('#' + textColour)
     // Scale font-size according to image dimensions
-    .pointSize(30 * (parseInt(Math.min(width, height), 10) / 200))
+    .pointSize(fontSize || Math.max(20, 30 * (parseInt(Math.min(width, height), 10) / 200)))
     // Draw the text
     .font('STHeiti.ttf')
     .drawText(0, 0, text)
