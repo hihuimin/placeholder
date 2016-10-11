@@ -71,6 +71,7 @@ app.get(/\/(\d+)(?:x((\d+)))?(.\w+)?/, function (req, res, next) {
     // Scale font-size according to image dimensions
     .pointSize(30 * (parseInt(Math.min(width, height), 10) / 200))
     // Draw the text
+    .font('STHeiti.ttf')
     .drawText(0, 0, text)
     // Get a readable stream of the image data
     .stream(format, function (err, stdout, stderr) {
